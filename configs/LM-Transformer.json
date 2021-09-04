@@ -1,0 +1,63 @@
+{
+    "model_name": "Transformer XL LM",
+    "model_type": "LM",
+
+    "lm_params": 
+    {
+        "arch": "Transformer",
+        "num_blocks": 12,
+        "dim_model": 768,
+        "ff_ratio": 4,
+        "num_heads": 12,
+        "vocab_size": 1000,
+        "relative_pos_enc": true,
+        "max_pos_encoding": 2048,
+        "Pdrop": 0.1
+    },
+    
+    "tokenizer_params":
+    {
+        "tokenizer_path": "datasets/LibriSpeech/LibriSpeech_bpe_1000.model",
+        "vocab_type": "bpe",
+        "vocab_size": 1000
+    },
+
+    "training_params":
+    {
+        "epochs": 100,
+        "batch_size": 64,
+        "accumulated_steps": 5,
+        "mixed_precision": true,
+
+        "optimizer": "Adam",
+        "beta1": 0.9,
+        "beta2": 0.95,
+        "eps": 1e-8,
+        "weight_decay": 0.0,
+
+        "lr_schedule": "Cosine",
+        "warmup_steps": 1000,
+        "end_step": 300000,
+        "lr_max": 0.0006,
+        "lr_min": 0.00006,
+
+        "train_label_max_length": 100,
+        "eval_audio_max_length": null,
+        "eval_label_max_length": null,
+
+        "training_dataset": "LibriSpeechCorpus",
+        "training_dataset_path": "datasets/librispeech-lm-norm.txt",
+
+        "evaluation_dataset": "LibriSpeech",
+        "evaluation_dataset_path": "datasets/LibriSpeech/",
+        "lm_mode": true,
+
+        "callback_path": "callbacks/LM-Transformer/"
+    },
+
+    "decoding_params":
+    {
+        "beam_size": 16,
+        "tmp": 1
+    }
+}

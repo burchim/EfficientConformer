@@ -1,0 +1,55 @@
+{
+    "model_name": "LM RNN",
+    "model_type": "LM",
+
+    "lm_params": 
+    {
+        "arch": "RNN",
+        "num_layers": 3,
+        "vocab_size": 1000,
+        "dim_model": 4096
+    },
+    
+    "tokenizer_params":
+    {
+        "tokenizer_path": "datasets/LibriSpeech/LibriSpeech_bpe_1000.model",
+        "vocab_type": "bpe",
+        "vocab_size": 1000
+    },
+
+    "training_params":
+    {
+        "epochs": 100,
+        "batch_size": 16,
+        "accumulated_steps": 4,
+        "mixed_precision": true,
+
+        "optimizer": "Adam",
+        "beta1": 0.9,
+        "beta2": 0.98,
+        "eps": 1e-9,
+        "weight_decay": 1e-6,
+
+        "lr_schedule": "Constant",
+        "lr_value": 0.001,
+
+        "train_label_max_length": 100,
+        "eval_audio_max_length": null,
+        "eval_label_max_length": null,
+
+        "training_dataset": "LibriSpeechCorpus",
+        "training_dataset_path": "datasets/librispeech-lm-norm.txt",
+
+        "evaluation_dataset": "LibriSpeech",
+        "evaluation_dataset_path": "datasets/LibriSpeech/",
+        "lm_mode": true,
+
+        "callback_path": "callbacks/LM-RNN/"
+    },
+
+    "decoding_params":
+    {
+        "beam_size": 16,
+        "tmp": 1
+    }
+}

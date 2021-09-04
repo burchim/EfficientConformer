@@ -1,0 +1,111 @@
+{
+    "model_name": "Conformer Transducer Medium",
+    "model_type": "Transducer",
+
+    "encoder_params": 
+    {
+        "arch": "Conformer",
+        "num_blocks": 16,
+        "dim_model": 256,
+        "ff_ratio": 4,
+        "num_heads": 4,
+        "kernel_size": 31,
+        "Pdrop": 0.1,
+
+        "relative_pos_enc": true,
+        "max_pos_encoding": 10000,
+
+        "subsampling_module": "Conv2d",
+        "subsampling_layers": 2,
+        "subsampling_filters": [256, 256],
+        "subsampling_kernel_size": 3,
+        "subsampling_norm": "batch",
+        "subsampling_act": "swish",
+
+        "sample_rate": 16000,
+        "win_length_ms": 25,
+        "hop_length_ms": 10,
+        "n_fft": 512,
+        "n_mels": 80,
+        "normalize": false,
+        "mean": -5.6501,
+        "std": 4.2280,
+
+        "spec_augment": true,
+        "mF": 2,
+        "F": 27,
+        "mT": 10,
+        "pS": 0.05
+    },
+
+    "decoder_params":
+    {
+        "arch": "RNN",
+        "num_layers": 1,
+        "dim_model": 640,
+        "vocab_size": 1000
+    },
+
+    "joint_params":
+    {
+        "joint_mode": "sum",
+        "dim_model": 640,
+        "act": "tanh"
+    },
+    
+    "tokenizer_params":
+    {
+        "tokenizer_path": "datasets/LibriSpeech/LibriSpeech_bpe_1000.model",
+        "vocab_type": "bpe",
+        "vocab_size": 1000
+    },
+
+    "training_params":
+    {
+        "epochs": 250,
+        "batch_size": 8,
+        "accumulated_steps": 8,
+        "mixed_precision": true,
+
+        "optimizer": "Adam",
+        "beta1": 0.9,
+        "beta2": 0.98,
+        "eps": 1e-9,
+        "weight_decay": 1e-6,
+
+        "lr_schedule": "Transformer",
+        "schedule_dim": 256,
+        "warmup_steps": 10000,
+        "K": 2,
+
+        "vn_start_step": 20000,
+        "vn_std": 0.075,
+
+        "train_audio_max_length": 256000,
+        "train_label_max_length": 90,
+        "eval_audio_max_length": null,
+        "eval_label_max_length": null,
+
+        "training_dataset": "LibriSpeech",
+        "training_dataset_path": "datasets/LibriSpeech/",
+
+        "evaluation_dataset": "LibriSpeech",
+        "evaluation_dataset_path": "datasets/LibriSpeech/",
+
+        "callback_path": "callbacks/ConformerTransducerMedium/"
+    },
+
+    "decoding_params":
+    {
+        "beam_size": 16,
+        "tmp": 1,
+
+        "ngram_path": "callbacks/ngram/6gram_1000.arpa",
+        "ngram_alpha": 0.3,
+        "ngram_beta": 1,
+
+        "lm_config": "configs/LM-Transformer.json",
+        "lm_weight": 1,
+        "lm_tmp": 1
+    }
+}
