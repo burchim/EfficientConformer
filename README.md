@@ -92,7 +92,7 @@ tensorboard --logdir callback_path
 | [Efficient Conformer](https://drive.google.com/drive/folders/1NyxiVNsR7qyLGeIYMOchu9JPiTLFlsoj?usp=sharing)	| Large 	| CTC 	| 125.6 | 2.5 / 5.8 | 2.1 / 4.7 | 4 x RTX 3090 |
 
 ## Reference
-[Maxime Burchi, Valentin Vielzeuf.	Efficient Conformer: Progressive Downsampling and Grouped Attention for Automatic Speech Recognition.](https://hal.archives-ouvertes.fr/hal-03328716)
+[Maxime Burchi, Valentin Vielzeuf.	Efficient Conformer: Progressive Downsampling and Grouped Attention for Automatic Speech Recognition.](https://arxiv.org/abs/2109.01163)
 <br><br>
 
 
