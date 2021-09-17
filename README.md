@@ -2,6 +2,8 @@
 
 Official implementation of the Efficient Conformer, progressively downsampled Conformer with grouped attention for Automatic Speech Recognition.
 
+**Efficient Conformer [Paper](https://arxiv.org/abs/2109.01163) | [Demo Notebook](https://colab.research.google.com/github/burchim/EfficientConformer/blob/master/EfficientConformer.ipynb)**
+
 ## Efficient Conformer Encoder
 Inspired from previous works done in Automatic Speech Recognition and Computer Vision, the Efficient Conformer encoder is composed of three encoder stages where each stage comprises a number of Conformer blocks using grouped attention. The encoded sequence is progressively downsampled and projected to wider feature dimensions, lowering  the amount of computation while achieving better performance. Grouped multi-head attention reduce attention complexity by grouping neighbouring time elements along the feature dimension before applying scaled dot-product attention.
 

@@ -423,7 +423,7 @@ class MultiHeadSelfAttentionModule(nn.Module):
         # Pre Norm
         self.norm = nn.LayerNorm(dim_model, eps=1e-6)
 
-        # Efficient Multi-Head Attention
+        # Multi-Head Linear Attention
         if linear_att:
             self.mhsa = MultiHeadLinearAttention(dim_model, num_heads)
 
