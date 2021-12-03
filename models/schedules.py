@@ -88,10 +88,10 @@ class cosine_annealing_learning_rate_scheduler:
         s = self.model_step + 1
 
         # Compute LR
-        if self.model_step <= self.warmup_steps: # Warmup phase
+        if s <= self.warmup_steps: # Warmup phase
             lr = s / self.warmup_steps * self.lr_max
         else: # Annealing phase
-            lr = (self.lr_max - self.lr_min) * 0.5 * (1 + math.cos(math.pi * (self.model_step - self.warmup_steps) / (self.end_step - self.warmup_steps))) + self.lr_min
+            lr = (self.lr_max - self.lr_min) * 0.5 * (1 + math.cos(math.pi * (s - self.warmup_steps) / (self.end_step - self.warmup_steps))) + self.lr_min
 
         # Update LR
         self.optimizer.param_groups[0]['lr'] = lr
