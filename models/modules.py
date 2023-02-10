@@ -146,7 +146,7 @@ class SpecAugment(nn.Module):
             for b in range(x.size(0)):
                 T = int(self.pS * x_len[b])
                 for _ in range(self.mT):
-                    x[b, :, :x_len[b]] = torchaudio.transforms.TimeMasking(time_mask_param=T).forward(x[b, :, :x_len[b]])
+                    x[b:b+1, :, :x_len[b]] = torchaudio.transforms.TimeMasking(time_mask_param=T).forward(x[b:b+1, :, :x_len[b]])
 
         return x
 
