@@ -7,3 +7,7 @@ jiwer
 tensorboard
 https://github.com/kpu/kenlm/archive/master.zip
 warp_rnnt
+gdown
+torchaudio
+IPython
+matplotlib
