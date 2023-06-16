@@ -9,6 +9,8 @@ import IPython.display as ipd
 from functions import *
 import matplotlib.pyplot as plt
 
+if not os.path.exists('EfficientConformer'):
+  os.mkdir('EfficientConformer')
 os.chdir('EfficientConformer/')
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -19,15 +21,21 @@ pretrained_models = {
     "EfficientConformerCTCLarge": "1U4iBTKQogX4btE-S4rqCeeFZpj3gcweA"
 }
 pretrained_model = "EfficientConformerCTCSmall"
+if not os.path.exists(os.path.join('callbacks', pretrained_model)):
+  os.makedirs(os.path.join('callbacks', pretrained_model))
 
 # download pretrained model
 gdown.download("https://drive.google.com/uc?id=" + pretrained_models[pretrained_model], os.path.join("callbacks", pretrained_model, "checkpoints_swa-equal-401-450.ckpt"), quiet=False)
 
 # download pretrained model tokenizer
+if not os.path.exists(os.path.join('datasets', 'LibriSpeech')):
+  os.makedirs(os.path.join('datasets', 'LibriSpeech'))
 gdown.download("https://drive.google.com/uc?id=1hx2s4ZTDsnOFtx5_h5R_qZ3R6gEFafRx", "datasets/LibriSpeech/LibriSpeech_bpe_256.model", quiet=False)
 
 # create and read in pretrained model
+# config_file = pretrained_model + '.json'
 config_file = "configs/" + pretrained_model + ".json"
+config_file = "/media/huzq85/2TB_Work/2-working/efficient_conformer/configs/" + pretrained_model + ".json"
 with open(config_file) as json_config:
   config = json.load(json_config)
 
