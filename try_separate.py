@@ -45,6 +45,7 @@ model.load(os.path.join("callbacks", pretrained_model, "checkpoints_swa-equal-40
   
 # Get audio files paths
 audio_files = glob.glob("datasets/LibriSpeech/*/*/*/*.flac")
+audio_files = glob.glob("/media/huzq85/2TB_Work/2-working/efficient_conformer/datasets/LibriSpeech/*/*/*/*.flac")
 print(len(audio_files), "audio files")
 
 # Random indices
@@ -58,7 +59,7 @@ for i in indices:
   # Plot audio
   plt.title(audio_files[i].split("/")[-1])
   plt.plot(audio[0])
-  plt.show()
+  # plt.show()
   print()
 
   # Display
